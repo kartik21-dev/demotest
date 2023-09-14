@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON File to Table</title>
+    <style>
+        /* Your CSS styles here */
+    </style>
+</head>
+<body>
+    <h1>JSON File to Table19</h1>
+
+    <table id="jsonTable">
+        <thead>
+            <tr>
+               <th>TRANSACTION_ID</th>
+                <th>ORDER_ID</th>
+                <th>ORDER_STATUS</th>
+				<th>ADDNL_INFO</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        // Fetch the JSON file
+        fetch("demo.json")
+            .then(response => response.json())
+            .then(jsonData => {
+                // Get a reference to the table body
+            const tableBody = document.querySelector("#jsonTable tbody");
+s
+                // Loop through the JSON objects and create rows in the table
+                    jsonArray.forEach(jsonData => {
+            const row = document.createElement("tr");
+
+            const transactionIdCell = document.createElement("td");
+            transactionIdCell.textContent = jsonData["transactionId"];
+            row.appendChild(transactionIdCell);
+			
+			const orderIdCell = document.createElement("td");
+            orderIdCell.textContent = jsonData["orderId"];
+            row.appendChild(orderIdCell);
+
+            const paymentStatusCell = document.createElement("td");
+            paymentStatusCell.textContent = jsonData["paymentStatus"];
+            row.appendChild(paymentStatusCell);           
+			
+			const commentsCell = document.createElement("td");
+            commentsCell.textContent = jsonData["comments"];
+            row.appendChild(commentsCell);
+
+            tableBody.appendChild(row);
+        });
+		
+      }).catch(error => console.error('Error fetching JSON:', error));
+    </script>
+</body>
+</html>
